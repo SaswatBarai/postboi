@@ -3,7 +3,7 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import React, { ReactNode } from 'react'
 
-type childrenProps = {
+export type childrenProps = {
     children : ReactNode
 }
 const AuthLayout = async ({children}:childrenProps) => {

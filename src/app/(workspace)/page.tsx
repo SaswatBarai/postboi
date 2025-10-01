@@ -8,7 +8,7 @@ const Home = async () => {
   return (
     <div>
       <div className='flex h-screen flex-col items-center justify-center'>
-       <UserButton user={user}/>
+
       </div>
     </div>
   )
