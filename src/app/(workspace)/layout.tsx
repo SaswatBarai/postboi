@@ -2,9 +2,12 @@ import React from 'react'
 import { childrenProps } from '../(auth)/layout'
 import { Header } from '@/modules/layout/components/header'
 import { currentUser } from '@/modules/authentication/actions'
+import { initilizeWorkspace } from '@/modules/workspaces/action'
 
 const RootLayout =async ({ children }: childrenProps) => {
+    const workspace = await initilizeWorkspace()
     const user = await currentUser();
+    console.log("mark 1",workspace)
     return (
         <>
             {/* Header */}
