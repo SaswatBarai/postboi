@@ -25,6 +25,8 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  workspaces    Workspace[] @relation("UserWorkspaces")
+  memberships  WorkspaceMember[]
   @@unique([email])
   @@map("user")
 }
@@ -72,4 +74,42 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+
+//
+//-----------------WORKSPACE & MEMNBERSIP --------------------------------
+//
+
+model Workspace{
+  id String @id @default(cuid())
+  name String
+  description String?
+  
+  ownerId String
+  owner User @relation("UserWorkspaces", fields: [ownerId], references: [id], onDelete: Cascade)
+  
+  members WorkspaceMember[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  @@unique([ownerId, name])
+}
+
+enum MEMBERROLE{
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+model WorkspaceMember{
+  id String @id @default(cuid())
+  role MEMBERROLE @default(ADMIN)
+
+  userId String 
+  workspaceId String
+
+  user User @relation(fields: [userId] , references: [id])
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, workspaceId])
 }
