@@ -10,7 +10,7 @@ export function useWorkspace(){
     })
 }
 
-export function useCraeteWorkspace(){
+export function useCreateWorkspace(){
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn:(name:string) => createWorksapce(name),

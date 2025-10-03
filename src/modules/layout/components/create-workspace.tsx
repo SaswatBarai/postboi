@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input"
 import Modal from "@/components/ui/model"
-import { useCraeteWorkspace } from "@/modules/workspaces/hooks/workspace"
+import { useCreateWorkspace } from "@/modules/workspaces/hooks/workspace"
 import React, { useState } from 'react'
 import { toast } from "sonner"
 
@@ -13,7 +13,7 @@ export const CreateWorkSpace = ({ isModelOpen, setIsModelOpen }: {
     setIsModelOpen: (open: boolean) => void
 }) => {
     const [name, setName] = useState("")
-    const {mutateAsync,isPending} = useCraeteWorkspace();
+    const {mutateAsync,isPending} = useCreateWorkspace();
     const handleSubmit = async () => {
         if(name.trim().length === 0) return;
         try {
